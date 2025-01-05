@@ -15,4 +15,18 @@
     </active-response>
   </rule>
 
+    <rule id="100002" level="10">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">sudo</field>
+    <match>(?:\S+\s+)?command not allowed | incorrect password attempts </match>
+    <frequency>10</frequency>
+    <timeframe>3600</timeframe>
+    <alert_by_email>yes</alert_by_email>
+    <active-response>
+      <command>run-script</command>
+      <command>/path/to/block_ip.sh</command>
+      <parameters>{1}</parameters>
+    </active-response>
+  </rule>
+
 
