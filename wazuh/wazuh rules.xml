@@ -24,7 +24,7 @@
     <alert_by_email>yes</alert_by_email>
     <active-response>
       <command>run-script</command>
-      <command>/path/to/block_ip.sh</command>
+      <command>/path/to/block_user.sh</command>
       <parameters>{1}</parameters>
     </active-response>
   </rule>
