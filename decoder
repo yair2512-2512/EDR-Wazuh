@@ -1,7 +1,7 @@
 <decoders>
     <decoder name="ssh">
         <program_name>sshd</program_name>
-        <regex>^.*Failed password for .* from (\S+)</regex>
+        <regex>^.*Failed password  .* from (\S+)</regex>
         <order>src_ip</order>
     </decoder>
 </decoders>
