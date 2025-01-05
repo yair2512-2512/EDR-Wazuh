@@ -5,7 +5,7 @@ ufw deny from $IP_TO_BLOCK
 ufw reload
 echo "IP $IP_TO_BLOCK has been blocked."
 #######################################
-###block_user.sh
+###block_user.sh###
 username=$1
 if [ -z "$username" ]; then
   echo "user not found."
