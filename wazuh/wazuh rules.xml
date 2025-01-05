@@ -6,7 +6,6 @@
       <field name="message">.*failed.*</field>
     </match>
     <options>no_full_log</options>
-    <alert_by_email>yes</alert_by_email>
     <frequency>10</frequency>
     <timeframe>600</timeframe>
     <active-response>
@@ -15,3 +14,5 @@
       <parameters>src_ip</parameters>
     </active-response>
   </rule>
+
+
