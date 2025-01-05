@@ -6,7 +6,6 @@ ufw reload
 echo "IP $IP_TO_BLOCK has been blocked."
 #######################################
 ###block_user.sh###
-#!/bin/bash
 username=$1
 if [ -z "$username" ]; then
   echo "No username provided."
@@ -27,4 +26,5 @@ for ip in $ips; do
   sudo iptables -A INPUT -s $ip -j DROP
   echo "IP $ip has been blocked from connecting."
 done
+########################################
 
