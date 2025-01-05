@@ -20,7 +20,7 @@
     <field name="tag">sudo</field>
     <match>(?:\S+\s+)?command not allowed | incorrect password attempts </match>
     <frequency>10</frequency>
-    <timeframe>3600</timeframe>
+    <timeframe>600</timeframe>
     <alert_by_email>yes</alert_by_email>
     <active-response>
       <command>run-script</command>
