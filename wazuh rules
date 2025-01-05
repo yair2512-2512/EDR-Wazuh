@@ -1,1 +1,17 @@
-
+<group name="authentication">
+  <rule id="100001" level="10">
+    <decoded_as>syslog</decoded_as>
+    <match>
+      <field name="tag">auth</field>
+      <field name="message">.*failed.*</field>
+    </match>
+    <options>no_full_log</options>
+    <alert_by_email>yes</alert_by_email>
+    <frequency>10</frequency>
+    <timeframe>600</timeframe>
+    <active-response>
+      <command>run-script</command>
+      <location>/var/ossec/active-response/bin/block-ip.sh</location>
+      <parameters>src_ip</parameters>
+    </active-response>
+  </rule>
