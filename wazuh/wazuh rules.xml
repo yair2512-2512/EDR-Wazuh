@@ -6,7 +6,7 @@
       <field name="message">.*failed.*</field>
     </match>
     <options>no_full_log</options>
-    <frequency>10</frequency>
+    <frequency>20</frequency>
     <timeframe>600</timeframe>
     <active-response>
       <command>run-script</command>
@@ -19,7 +19,7 @@
     <decoded_as>syslog</decoded_as>
     <field name="tag">sudo</field>
     <match>(?:\S+\s+)?command not allowed | incorrect password attempts </match>
-    <frequency>10</frequency>
+    <frequency>20</frequency>
     <timeframe>600</timeframe>
     <alert_by_email>yes</alert_by_email>
     <active-response>
