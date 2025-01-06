@@ -83,7 +83,7 @@
     <match>22|3389|3306|1433|21|23</match>
     <alert_by_email>yes</alert_by_email>
      <active-response>
-      <command>/var/ossec/active-response/bin/check_module.sh</command>
+      <command>/var/ossec/active-response/bin/block-port.sh</command>
       <parameters>%{port}</parameters>
     </active-response>
   </rule>
