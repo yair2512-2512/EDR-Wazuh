@@ -76,5 +76,12 @@
     </active-response>
   </rule>
 
+  <rule id="10005" level="7">
+    <location>/var/log/ufw.log</location> 
+    <decoded_as>syslog</decoded_as>
+    <match>Port Opened</match>   
+    <alert_by_email>yes</alert_by_email>
+</rule>
+
   
 
