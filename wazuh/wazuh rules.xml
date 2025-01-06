@@ -77,11 +77,15 @@
   </rule>
 
   <rule id="10005" level="7">
-    <location>/var/log/ufw.log</location> 
+    <field name="tag">ufw</field>
     <decoded_as>syslog</decoded_as>
-    <match>Port Opened</match>   
+    <match>Port Opened</match>  
+    <match>22|3389|3306|1433|21|23</match>
     <alert_by_email>yes</alert_by_email>
-</rule>
+     <active-response>
+      <command>/var/ossec/active-response/bin/check_module.sh</command>
+    </active-response>
+  </rule>
 
   
 
