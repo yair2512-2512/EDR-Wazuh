@@ -9,5 +9,10 @@
      <regex>\[.*\]\s*(sd\w+)</regex>
      <field name="device_name">(\S+)</field>
     </decoder>
+    <decoder name="ufw">
+     <program_name>ufw</program_name>
+     <regex>Allowing IN \S+ on port (\d+)</regex>
+     <field name="port">\1</field>
+    </decoder>
 
 </decoders>
