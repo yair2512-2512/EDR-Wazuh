@@ -8,7 +8,6 @@
      <program_name>kernel</program_name>
      <regex>\[.*\]\s*(sd\w+)</regex>
      <field name="device_name">(\S+)</field>
-     <description>Detect USB device attachment</description>
     </decoder>
 
 </decoders>
