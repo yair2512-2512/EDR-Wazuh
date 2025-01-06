@@ -9,8 +9,7 @@
     <frequency>10</frequency>
     <timeframe>600</timeframe>
     <active-response>
-      <command>run-script</command>
-      <location>/var/ossec/active-response/bin/block-ip.sh</location>
+      <command>/var/ossec/active-response/bin/block-ip.sh <command>
       <parameters>src_ip</parameters>
     </active-response>
   </rule>
@@ -23,7 +22,6 @@
     <timeframe>600</timeframe>
     <alert_by_email>yes</alert_by_email>
     <active-response>
-      <command>run-script</command>
       <command>/path/to/block_user.sh</command>
       <parameters>{1}</parameters>
     </active-response>
@@ -42,8 +40,8 @@
    <alert_by_email>yes</alert_by_email>
    <match>usb-storage|sd</match>
      <active-response>
-      <command>run-script</command>
-
+      <command>/path/to/block_usb.sh</command>
+      <parameters>$DEVICE_NAME</parameters>
       <active-response>
  </rule>
 
