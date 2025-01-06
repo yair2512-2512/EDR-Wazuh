@@ -5,12 +5,11 @@
       <field name="tag">auth</field>
       <field name="message">.*failed.*</field>
     </match>
-    <options>no_full_log</options>
     <frequency>10</frequency>
     <timeframe>600</timeframe>
     <active-response>
       <command>/var/ossec/active-response/bin/block-ip.sh <command>
-      <parameters>src_ip</parameters>
+      <parameters>%{src_ip}</parameters>
     </active-response>
   </rule>
 
@@ -20,6 +19,7 @@
     <match>(?:\S+\s+)?command not allowed | incorrect password attempts </match>
     <frequency>10</frequency>
     <timeframe>600</timeframe>
+    <options>no_full_log</options>
     <alert_by_email>yes</alert_by_email>
     <active-response>
       <command>/path/to/block_user.sh</command>
@@ -34,16 +34,27 @@
     <alert_by_email>yes</alert_by_email>
     <match>reboot|passwd</match>
   </rule>
-
-  <rule id="100004" level="12">
+  
+<group name="system">
+  <rule id="100001" level="15">
    <decoded_as>syslog</decoded_as>
    <alert_by_email>yes</alert_by_email>
    <match>usb-storage|sd</match>
      <active-response>
       <command>/path/to/block_usb.sh</command>
-      <parameters>$DEVICE_NAME</parameters>
+      <parameters>%{device_name}</parameters>
       <active-response>
- </rule>
+  </rule>
+  
+   <rule id="100002" level="20">
+    <decoded_as>syslog</decoded_as>
+    <alert_by_email>yes</alert_by_email>
+    <match>kernel.*(panic|Oops).*|(panic|Oops).*kernel</match>
+    <active-response>
+      <command>reboot</command>
+    </active-response>
+   </rule>
+  
 
   
 
