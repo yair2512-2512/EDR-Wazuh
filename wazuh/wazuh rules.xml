@@ -35,7 +35,10 @@
     <match>reboot|passwd</match>
   </rule>
   
+</group>
+
 <group name="system">
+  
   <rule id="100001" level="15">
    <decoded_as>syslog</decoded_as>
    <alert_by_email>yes</alert_by_email>
@@ -53,8 +56,25 @@
     <active-response>
       <command>reboot</command>
     </active-response>
+   </rule
+     
+  <rule id="100003" level="18">
+    <decoded_as>syslog</decoded_as>
+    <alert_by_email>yes</alert_by_email>
+    <match>
+       memory failure| I/O error|segmentation fault|memory access violation
+    </match>
    </rule>
-  
+
+  <rule id="100004" level="8"> 
+    <decoded_as>syslog</decoded_as>
+    <match>module (inserted|removed)(?:\s*[:\s]*(\S+)?)?</match>
+    <options>no_full_log</option
+    <active-response>
+      <command>/var/ossec/active-response/bin/check_module.sh <command>
+      <parameters>{2}</parameters>
+    </active-response>
+  </rule>
 
   
 
