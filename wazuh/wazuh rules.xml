@@ -84,6 +84,7 @@
     <alert_by_email>yes</alert_by_email>
      <active-response>
       <command>/var/ossec/active-response/bin/check_module.sh</command>
+      <parameters>%{port}</parameters>
     </active-response>
   </rule>
 
