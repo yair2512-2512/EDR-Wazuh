@@ -2,7 +2,7 @@
     <decoder name="ssh">
         <program_name>sshd</program_name>
         <regex>^.*Failed password .* from (\S+)</regex>
-        <field name="src_ip">(\S+)</field>
+        <field name="ip">(\S+)</field>
     </decoder>
     <decoder name="usb-device-detection">
      <program_name>kernel</program_name>
