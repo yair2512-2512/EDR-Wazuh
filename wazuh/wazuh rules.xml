@@ -1,10 +1,8 @@
 <group name="authentication">
   <rule id="100001" level="10">
     <decoded_as>syslog</decoded_as>
-    <match>
       <field name="tag">auth</field>
       <field name="message">.*failed.*</field>
-    </match>
     <frequency>10</frequency>
     <timeframe>600</timeframe>
     <active-response>
@@ -77,13 +75,12 @@
   </rule>
 </group>
 
-  <group name="system">
+  <group name="network">
 
   <rule id="10001" level="7">
     <field name="tag">ufw</field>
     <decoded_as>syslog</decoded_as>
-    <match>Port Opened|allowing</match>  
-    <match>22|3389|3306|1433|21|23</match>
+    <match>^.*(Port Opened|allowing|accept|opened).*(22|3389|3306|1433|21|23).*$</match>
     <alert_by_email>yes</alert_by_email>
      <active-response>
       <command>/var/ossec/active-response/bin/block-port.sh</command>
