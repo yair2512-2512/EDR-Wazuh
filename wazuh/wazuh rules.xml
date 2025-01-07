@@ -9,7 +9,7 @@
     <timeframe>600</timeframe>
     <active-response>
       <command>/var/ossec/active-response/bin/block-ip.sh <command>
-      <parameters>%{src_ip}</parameters>
+      <parameters>%{ip}</parameters>
     </active-response>
   </rule>
 
@@ -75,8 +75,11 @@
       <parameters>{2}</parameters>
     </active-response>
   </rule>
+</group>
 
-  <rule id="10005" level="7">
+  <group name="system">
+
+  <rule id="10001" level="7">
     <field name="tag">ufw</field>
     <decoded_as>syslog</decoded_as>
     <match>Port Opened|allowing</match>  
@@ -87,6 +90,19 @@
       <parameters>%{port}</parameters>
     </active-response>
   </rule>
+
+  <rule id="10012" level="8">
+   <decoded_as>syslog</decoded_as> 
+   <field name="tag">ufw</field>
+   <field name="src_ip">SRC=.*</field>
+   <field name="dst_ip">DST=.*</field>
+   <active-response>
+     <command>/path/to/check_ip.sh</command>
+     <parameter>$src_ip</parameter>
+     <parameter>$dst_ip</parameter>
+   </active-response>
+  </rule>
+
 
   
 
