@@ -88,7 +88,7 @@
     </active-response>
   </rule>
 
-  <rule id="10012" level="8">
+  <rule id="10002" level="8">
    <decoded_as>syslog</decoded_as> 
    <field name="tag">ufw</field>
    <field name="src_ip">SRC=.*</field>
@@ -99,6 +99,30 @@
      <parameter>$dst_ip</parameter>
    </active-response>
   </rule>
+    
+  <rule id="10003" level="8">
+    <decoded_as>syslog</decoded_as> 
+    <field name="tag">ufw</field>
+    <regex>^(?!.*username=root).*Rule added|Rule deleted|Configuration change|ufw.*stopped</regex>
+    <alert_by_email>yes</alert_by_email>
+  </rule>
+
+  <rule id="10004" level="10">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">ufw</field>
+    <match>DENIED</match> 
+    <field name="src_ip">.*</field> 
+    <frequency>20</frequency> 
+    <timeframe>60</timeframe> 
+    <active-response>
+      <command>/path/to/block_ip.sh $src_ip</command> 
+    </active-response>
+  </rule>
+
+
+
+
+    
 
 
   
