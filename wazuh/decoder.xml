@@ -11,8 +11,8 @@
     </decoder>
     <decoder name="ufw">
      <program_name>ufw</program_name>
-     <regex>Allowing IN \S+ on port (\d+)</regex>
-     <field name="port">\1</field>
+     <regex>(Port Opened|allowing|accept|opened|Allowing IN \S+ on port (\d+))</regex>
+     <field name="port">\2</field>
     </decoder>
 
 </decoders>
