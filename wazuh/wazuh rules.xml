@@ -133,6 +133,17 @@
         </active-response>
     </rule>
 
+<rule id="100002" level="10"> 
+    <field name="info">sudo</field>
+    <decoded_as>syslog</decoded_as> 
+    <field name="MemFree">.*</field> 
+
+    <regex>\bMemFree:\s+([0-9]+)\s+</regex> 
+    
+    <range lower="50000" operation="lt"/> 
+    
+    <alert>yes</alert> 
+</rule>
 
 
 
