@@ -108,3 +108,14 @@ check_ip() {
 check_ip $src_ip
 check_ip $dst_ip
 #####################################
+###disable_process.sh###
+
+
+
+
+
+
+
+
+
+
