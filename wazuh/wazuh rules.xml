@@ -118,6 +118,30 @@
       <command>/path/to/block_ip.sh $src_ip</command> 
     </active-response>
   </rule>
+    
+</group>
+
+  <group name="process">
+
+    <rule id="100001" level="10">
+        <decoded_as>syslog</decoded_as>
+        <field name="cpu">.*user=[8-9][0-9].*</field> 
+        <field name="pid">[0-9]+</field> 
+        <alert_by_email>yes</alert_by_email> 
+        <active-response>
+            <command>/path/to/disable_process.sh $pid</command> 
+        </active-response>
+    </rule>
+
+
+
+
+
+
+
+
+
+
 
 
 
