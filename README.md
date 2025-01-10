@@ -4,4 +4,5 @@ My project is on the EDR wazuh system, kibana, elasticsearch, filebeat
 - Wazuh ossec.conf
 - Bash scripts
 - filebeat.yml
+- Wazuh rules.xml
 to low pc end ponit banks ######
