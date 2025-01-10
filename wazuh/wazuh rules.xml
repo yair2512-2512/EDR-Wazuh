@@ -131,8 +131,17 @@
             <command>/path/to/disable_process.sh $pid</command> 
         </active-response>
     </rule>
-<\group>
-  
+     <rule id="1000016" level="10">
+         <decoded_as>syslog</decoded_as>
+         <field name="tag"audit</field>
+         <field name="exe">^(/tmp/|/var/tmp/|/dev/shm/|/home/user/.hidden/).*</field>
+         <active-response>
+          <command>/path/to/suspicious_process_handler.sh</command> 
+        </active-response>
+     </rule>
+  </group>
+
+    
   <group name="RAM">
 
 <rule id="100013" level="10"> 
@@ -170,6 +179,11 @@
      <command>/path/to/Free_cleanup.sh</command>
   </active-response>
 </rule>
+
+
+
+
+    
 
 
 
