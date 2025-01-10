@@ -134,15 +134,15 @@
     </rule>
 
 <rule id="100002" level="10"> 
-    <field name="info">sudo</field>
     <decoded_as>syslog</decoded_as> 
+    <field name="tag">info</field>
     <field name="MemFree">.*</field> 
-
     <regex>\bMemFree:\s+([0-9]+)\s+</regex> 
-    
-    <range lower="50000" operation="lt"/> 
-    
-    <alert>yes</alert> 
+    <range lower="512000" operation="lt"/>
+    <alert_by_email>yes</alert_by_email> 
+  <active-response>
+     <command>/path/to/memory_cleanup.sh</command>
+  </active-response>
 </rule>
 
 
