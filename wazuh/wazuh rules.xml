@@ -139,9 +139,17 @@
           <command>/path/to/suspicious_process_handler.sh</command> 
         </active-response>
      </rule>
+     <rule id="1000017" level="10">
+       <decoded_as>syslog</decoded_as>
+       <field name="tag">tcp</field>
+       <match>.*:21|.*:22|.*:23|.*:53|.*:80|.*:443|.*:445</match>
+       <active-response>
+          <command>/path/to/your/script.sh</command> 
+       </active-response>
+     </rule>
+    
   </group>
 
-    
   <group name="RAM">
 
 <rule id="100013" level="10"> 
