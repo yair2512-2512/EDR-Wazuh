@@ -166,8 +166,6 @@ fi
 PROCESS_PATH="$1"
 API_KEY="your_virustotal_api_key"  
 PROCESS_NAME=$(basename "$PROCESS_PATH") 
-if [[ "$PROCESS_PATH" =~ ^(/tmp/|/var/tmp/|/dev/shm/|/home/user/.hidden/) ]]; then
-  echo "Suspicious process detected at $PROCESS_PATH"
   RESPONSE=$(curl -s -X POST \
     --url "https://www.virustotal.com/api/v3/files" \
     -H "x-apikey: $API_KEY" \
