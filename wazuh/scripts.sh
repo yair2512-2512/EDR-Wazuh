@@ -151,7 +151,7 @@ fi
 echo "Clearing cache to free memory..."
 sync; echo 3 > /proc/sys/vm/drop_caches
 #################################################
-###SwapFree_cleanup.sh###
+###Free_cleanup.sh###
 echo "Cleaning swap memory..."
 sync; echo 3 > /proc/sys/vm/drop_caches
 swapoff -a && swapon -a
