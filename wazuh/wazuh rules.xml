@@ -37,7 +37,7 @@
 
 <group name="system">
   
-  <rule id="100001" level="15">
+  <rule id="100004" level="15">
    <decoded_as>syslog</decoded_as>
    <alert_by_email>yes</alert_by_email>
    <match>usb-storage|sd</match>
@@ -47,7 +47,7 @@
       <active-response>
   </rule>
   
-   <rule id="100002" level="20">
+   <rule id="100005" level="20">
     <decoded_as>syslog</decoded_as>
     <alert_by_email>yes</alert_by_email>
     <match>kernel.*(panic|Oops).*|(panic|Oops).*kernel</match>
@@ -56,7 +56,7 @@
     </active-response>
    </rule
      
-  <rule id="100003" level="18">
+  <rule id="100006" level="18">
     <decoded_as>syslog</decoded_as>
     <alert_by_email>yes</alert_by_email>
     <match>
@@ -64,7 +64,7 @@
     </match>
    </rule>
 
-  <rule id="100004" level="8"> 
+  <rule id="100007" level="8"> 
     <decoded_as>syslog</decoded_as>
     <match>module (inserted|removed)(?:\s*[:\s]*(\S+)?)?</match>
     <options>no_full_log</option
@@ -77,7 +77,7 @@
 
   <group name="network">
 
-  <rule id="10001" level="7">
+  <rule id="10008" level="7">
     <field name="tag">ufw</field>
     <decoded_as>syslog</decoded_as>
     <match>^.*(Port Opened|allowing|accept|opened).*(22|3389|3306|1433|21|23).*$</match>
@@ -88,7 +88,7 @@
     </active-response>
   </rule>
 
-  <rule id="10002" level="8">
+  <rule id="10009" level="8">
    <decoded_as>syslog</decoded_as> 
    <field name="tag">ufw</field>
    <field name="src_ip">SRC=.*</field>
@@ -100,14 +100,14 @@
    </active-response>
   </rule>
     
-  <rule id="10003" level="8">
+  <rule id="10010" level="8">
     <decoded_as>syslog</decoded_as> 
     <field name="tag">ufw</field>
     <regex>^(?!.*username=root).*Rule added|Rule deleted|Configuration change|ufw.*stopped</regex>
     <alert_by_email>yes</alert_by_email>
   </rule>
 
-  <rule id="10004" level="10">
+  <rule id="10011" level="10">
     <decoded_as>syslog</decoded_as>
     <field name="tag">ufw</field>
     <match>DENIED</match> 
@@ -122,8 +122,7 @@
 </group>
 
   <group name="process">
-
-    <rule id="100001" level="10">
+    <rule id="100012" level="10">
         <decoded_as>syslog</decoded_as>
         <field name="cpu">.*user=[8-9][0-9].*</field> 
         <field name="pid">[0-9]+</field> 
@@ -132,8 +131,11 @@
             <command>/path/to/disable_process.sh $pid</command> 
         </active-response>
     </rule>
+<\group>
+  
+  <group name="RAM">
 
-<rule id="100002" level="10"> 
+<rule id="100013" level="10"> 
     <decoded_as>syslog</decoded_as> 
     <field name="tag">info</field>
     <field name="MemFree">.*</field> 
@@ -145,7 +147,7 @@
   </active-response>
 </rule>
     
-<rule id="100003" level="10">
+<rule id="100014" level="10">
   <decoded_as>syslog</decoded_as> 
   <field name="tag">info</field>
   <field name="SwapFree">.*</field>
@@ -157,14 +159,15 @@
   </active-response>
 </rule>
 
-<rule id="100004" level="10">
+<rule id="100015" level="10">
   <decoded_as>syslog</decoded_as>
   <field name="tag">info</field>
   <field name="MemAvailable">.*</field>
   <regex>\bMemAvailable:\s+([0-9]+)\s+</regex>
   <range lower="1048576" operation="lt"/>  
+  <alert_by_email>yes</alert_by_email>
   <active-response>
-     <command>/path/to/SwapFree_cleanup.sh</command>
+     <command>/path/to/Free_cleanup.sh</command>
   </active-response>
 </rule>
 
