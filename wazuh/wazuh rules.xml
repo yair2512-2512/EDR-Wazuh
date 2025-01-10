@@ -144,7 +144,18 @@
      <command>/path/to/memory_cleanup.sh</command>
   </active-response>
 </rule>
-
+    
+<rule id="100003" level="10">
+  <decoded_as>syslog</decoded_as> 
+  <field name="tag">info</field>
+  <field name="SwapFree">.*</field>
+  <regex>\bSwapFree:\s+([0-9]+)\s+</regex> 
+  <range lower="100000" operation="lt"/> 
+  <alert_by_email>yes</alert_by_email>
+  <active-response>
+    <command>/path/to/SwapFree_cleanup.sh</command>
+  </active-response>
+</rule>
 
 
 
