@@ -157,6 +157,16 @@
   </active-response>
 </rule>
 
+<rule id="100004" level="10">
+  <decoded_as>syslog</decoded_as>
+  <field name="tag">info</field>
+  <field name="MemAvailable">.*</field>
+  <regex>\bMemAvailable:\s+([0-9]+)\s+</regex>
+  <range lower="1048576" operation="lt"/>  
+  <active-response>
+     <command>/path/to/SwapFree_cleanup.sh</command>
+  </active-response>
+</rule>
 
 
 
