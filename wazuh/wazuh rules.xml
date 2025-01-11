@@ -143,8 +143,9 @@
        <decoded_as>syslog</decoded_as>
        <field name="tag">tcp</field>
        <match>.*:21|.*:22|.*:23|.*:53|.*:80|.*:443|.*:445</match>
+       <replace field="port1">\1</replace>
        <active-response>
-          <command>/path/to/your/script.sh</command> 
+          <command>/path/to/your/port-script.sh {port1}</command> 
        </active-response>
      </rule>
     
