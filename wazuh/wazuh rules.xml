@@ -135,6 +135,18 @@
      <command>/var/ossec/active-response/bin/block_ip.sh {SRC}</command>
    </active-response>
  </rule>
+
+  <rule id="100023" level="10">
+    <decoded_as>syslog</decoded_as>
+    <match>.*(DNS|query).*"([^"]+)".*</match>
+    <field name="domain">\1</field> 
+    <active-response>
+      <command>/path/to/domain_script.sh {domain}</command> 
+    </active-response>
+  </rule>
+    
+</group>
+
 </group>
 
   <group name="process">
