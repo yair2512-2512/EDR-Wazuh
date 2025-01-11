@@ -155,7 +155,7 @@
         <match>.*:53|.*:161|.*:162|.*:69|.*:514|.*:123|.*:137|.*:138|.*:139|.*:500</match>
         <replace field="port2">\1</replace>
         <active-response>
-          <command>/path/to/your/port2-script.sh {port2}</command>
+          <command>/path/to/your/port-script.sh {port2}</command>
         </active-response>
      </rule>
 
