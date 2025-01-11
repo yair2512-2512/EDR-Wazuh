@@ -30,7 +30,7 @@
     <field name="tag">sudo</field>
     <field name="program">sudo</field>
     <alert_by_email>yes</alert_by_email>
-    <match>reboot|passwd</match>
+    <match>.*reboot|passwd.*</match>
   </rule>
 
   <rule id="100022" level="10">
@@ -67,7 +67,7 @@
     <decoded_as>syslog</decoded_as>
     <alert_by_email>yes</alert_by_email>
     <match>
-       memory failure| I/O error|segmentation fault|memory access violation
+     .*(memory\s*failure.*|I/O\s*error.*|segmentation\s*fault.*|memory\s*access\s*violation.*).*
     </match>
    </rule>
 
@@ -114,7 +114,7 @@
   <rule id="10011" level="10">
     <decoded_as>syslog</decoded_as>
     <field name="tag">ufw</field>
-    <match>DENIED</match> 
+    <match>.*DENIED.*</match> 
     <field name="src_ip">.*</field> 
     <frequency>20</frequency> 
     <timeframe>60</timeframe> 
