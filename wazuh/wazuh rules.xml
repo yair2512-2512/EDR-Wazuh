@@ -84,7 +84,7 @@
     <alert_by_email>yes</alert_by_email>
      <active-response>
       <command>/var/ossec/active-response/bin/block-port.sh</command>
-      <parameters>%{port}</parameters>
+      <parameters>{port}</parameters>
     </active-response>
   </rule>
 
@@ -118,10 +118,28 @@
       <command>/path/to/block_ip.sh $src_ip</command> 
     </active-response>
   </rule>
+
+ <rule id="100018" level="8">
+   <decoded_as>syslog</decoded_as>
+   <field name="tag"ufw</field>
+   <match>.*DROP.*</match>
+   <match>.*REJECT.*</match>
+   <match>.*BLOCK.*</match>
+   <frequency>20</frequency>
+   <timeframe>600</timeframe>
+   <active-response>
+     <command>/var/ossec/active-response/bin/block_ip_drop_reject.sh {SRC}</command>
+   </active-response>
+ </rule>
+
+
+
+
     
 </group>
 
   <group name="process">
+    
     <rule id="100012" level="10">
         <decoded_as>syslog</decoded_as>
         <field name="cpu">.*user=[8-9][0-9].*</field> 
@@ -162,19 +180,19 @@
   </group>
 
   <group name="RAM">
-
-<rule id="100013" level="10"> 
-    <decoded_as>syslog</decoded_as> 
-    <field name="tag">info</field>
-    <field name="MemFree">.*</field> 
-    <regex>\bMemFree:\s+([0-9]+)\s+</regex> 
-    <range lower="512000" operation="lt"/>
-    <alert_by_email>yes</alert_by_email> 
-  <active-response>
-     <command>/path/to/memory_cleanup.sh</command>
-  </active-response>
-</rule>
     
+    <rule id="100013" level="10"> 
+      <decoded_as>syslog</decoded_as> 
+      <field name="tag">info</field>
+      <field name="MemFree">.*</field> 
+      <regex>\bMemFree:\s+([0-9]+)\s+</regex> 
+      <range lower="512000" operation="lt"/>
+      <alert_by_email>yes</alert_by_email> 
+      <active-response>
+       <command>/path/to/memory_cleanup.sh</command>
+      </active-response>
+   </rule>
+     
 <rule id="100014" level="10">
   <decoded_as>syslog</decoded_as> 
   <field name="tag">info</field>
@@ -199,7 +217,7 @@
   </active-response>
 </rule>
 
-
+</group>
 
 
     
