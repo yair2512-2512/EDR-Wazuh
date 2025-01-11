@@ -89,14 +89,11 @@
   </rule>
 
   <rule id="10009" level="8">
-   <decoded_as>syslog</decoded_as> 
-   <field name="tag">ufw</field>
-   <field name="src_ip">SRC=.*</field>
-   <field name="dst_ip">DST=.*</field>
-   <active-response>
-     <command>/path/to/check_ip.sh</command>
-     <parameter>$src_ip</parameter>
-     <parameter>$dst_ip</parameter>
+     <decoded_as>syslog</decoded_as> 
+     <match>.*\b(?:\d{1,3}\.){3}\d{1,3}\b.*</match>
+     <replace field="ip12">\1</replace>
+     <active-response>
+     <command>/path/to/check_ip.sh {ip12}</command>
    </active-response>
   </rule>
     
@@ -115,7 +112,7 @@
     <frequency>20</frequency> 
     <timeframe>60</timeframe> 
     <active-response>
-      <command>/path/to/block_ip.sh $src_ip</command> 
+      <command>/path/to/block_ip.sh {SRC}</command> 
     </active-response>
   </rule>
 
@@ -128,14 +125,9 @@
    <frequency>20</frequency>
    <timeframe>600</timeframe>
    <active-response>
-     <command>/var/ossec/active-response/bin/block_ip_drop_reject.sh {SRC}</command>
+     <command>/var/ossec/active-response/bin/block_ip.sh {SRC}</command>
    </active-response>
  </rule>
-
-
-
-
-    
 </group>
 
   <group name="process">
