@@ -32,6 +32,13 @@
     <alert_by_email>yes</alert_by_email>
     <match>reboot|passwd</match>
   </rule>
+
+  <rule id="100022" level="10">
+     <decoded_as>syslog</decoded_as> 
+     <match>.*(SSLv2|SSLv3|TLSv1\.0|TLSv1\.1|RC4|DES|512|1024|Telnet ).*</match> 
+     <alert_by_email>yes</alert_by_email>
+ </rule>
+
   
 </group>
 
