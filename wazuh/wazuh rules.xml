@@ -28,7 +28,6 @@
   <rule id="100003" level="7">
     <decoded_as>syslog</decoded_as>
     <field name="tag">sudo</field>
-    <field name="program">sudo</field>
     <alert_by_email>yes</alert_by_email>
     <match>.*reboot|passwd.*</match>
   </rule>
