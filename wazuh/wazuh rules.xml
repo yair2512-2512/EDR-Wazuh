@@ -143,7 +143,19 @@
       <command>/path/to/domain_script.sh {domain}</command> 
     </active-response>
   </rule>
-    
+
+    <rule id="100024" level="10">
+    <decoded_as>syslog</decoded_as>
+    <description>Suspicious high-frequency DNS requests</description>
+    <match>.*query|dns.*</match> 
+    <frequency>50</frequency> 
+    <timeframe>300</timeframe> 
+    <active-response>
+      <command>/path/to/dns_script.sh </command> 
+    </active-response>
+  </rule>
+</group>
+
 </group>
 
 </group>
