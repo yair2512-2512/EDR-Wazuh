@@ -23,7 +23,7 @@
     <options>no_full_log</options>
     <alert_by_email>yes</alert_by_email>
     <active-response>
-      <command>/path/to/block_user.sh</command>
+      <command>/var/ossec/active-response/bin/block_user.sh</command>
       <parameters>{1}</parameters>
     </active-response>
   </rule>
