@@ -1,0 +1,46 @@
+<group name="process">
+
+  <!-- Rule for high CPU usage processes -->
+  <rule id="100012" level="15">
+    <decoded_as>syslog</decoded_as>
+    <field name="cpu">.*user=[8-9][0-9].*</field>
+    <field name="pid">[0-9]+</field>
+    <alert_by_email>yes</alert_by_email>
+    <active-response>
+      <command>/path/to/disable_process.sh $pid</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for suspicious executable paths in certain directories -->
+  <rule id="1000016" level="15">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">audit</field>
+    <field name="exe">^(/tmp/|/var/tmp/|/dev/shm/|/home/user/.hidden/).*</field>
+    <active-response>
+      <command>/path/to/suspicious_process_handler.sh</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for suspicious TCP connections on specific ports -->
+  <rule id="1000017" level="12">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">tcp</field>
+    <match>.*:21|.*:22|.*:23|.*:53|.*:80|.*:443|.*:445</match>
+    <replace field="port1">\1</replace>
+    <active-response>
+      <command>/path/to/your/port-script.sh {port1}</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for suspicious UDP connections on specific ports -->
+  <rule id="1000018" level="12">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">udp</field>
+    <match>.*:53|.*:161|.*:162|.*:69|.*:514|.*:123|.*:137|.*:138|.*:139|.*:500</match>
+    <replace field="port2">\1</replace>
+    <active-response>
+      <command>/path/to/your/port-script.sh {port2}</command>
+    </active-response>
+  </rule>
+
+</group>
