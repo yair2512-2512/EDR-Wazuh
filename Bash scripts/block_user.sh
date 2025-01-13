@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script locks a user, terminates their sessions, and blocks their IP addresses.
 username=$1
 if [ -z "$username" ]; then
   echo "No username provided."
