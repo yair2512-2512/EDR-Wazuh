@@ -9,7 +9,7 @@
         <range lower="512000" operation="lt"/>
         <alert_by_email>yes</alert_by_email> 
         <active-response>
-            <command>/path/to/memory_cleanup.sh</command>
+            <command>/var/ossec/active-response/bin/memory_cleanup.sh</command>
         </active-response>
     </rule>
 
@@ -22,7 +22,7 @@
         <range lower="100000" operation="lt"/> 
         <alert_by_email>yes</alert_by_email>
         <active-response>
-            <command>/path/to/SwapFree_cleanup.sh</command>
+            <command>/var/ossec/active-response/bin/SwapFree_cleanup.sh</command>
         </active-response>
     </rule>
 
@@ -35,7 +35,7 @@
         <range lower="1048576" operation="lt"/>  
         <alert_by_email>yes</alert_by_email>
         <active-response>
-            <command>/path/to/Free_cleanup.sh</command>
+            <command>/var/ossec/active-response/bin/Free_cleanup.sh</command>
         </active-response>
     </rule>
 
