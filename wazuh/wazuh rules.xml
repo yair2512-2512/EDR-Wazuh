@@ -266,9 +266,16 @@
     </active-response>  
   </rule>
 
-  
+  <rule id="10028" level="15">
+    <decoded_as>syscheck</decoded_as>
+     <or>
+      <field name="data.action">modified</field>
+      <field name="data.action">created</field>
+      <field name="data.action">deleted</field>
+    </or> 
+    <field name="data.file">/(usr/bin|bin|lib|tmp|var)/.*</field>
+  </rule>
 
-    
 
 
 
