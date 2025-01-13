@@ -285,6 +285,7 @@
     <field name="data.file">/(usr/bin|bin|lib|tmp|var)/.*</field>
   </rule>
 
+</group>
 
 
 
