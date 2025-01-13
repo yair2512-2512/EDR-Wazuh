@@ -1,6 +1,8 @@
 #!/bin/bash
+# This script scans a file using VirusTotal API if the provided parameter is a file path.
 VIRUSTOTAL_API_KEY="YOUR_API_KEY_HERE"
 module_path_or_name=$1
+
 function is_file_path {
   if [[ -f "$1" ]]; then
     return 0
@@ -8,6 +10,7 @@ function is_file_path {
     return 1
   fi
 }
+
 function scan_file {
   file_path=$1
   response=$(curl -s --request POST \
@@ -17,6 +20,7 @@ function scan_file {
 
   echo "Scan response: $response"
 }
+
 if is_file_path "$module_path_or_name"; then
   echo "Parameter is a file path. Scanning the file..."
   scan_file "$module_path_or_name"
