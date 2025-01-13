@@ -1,7 +1,7 @@
 <group name="memory">
     
     <!-- Rule for MemFree check -->
-    <rule id="100013" level="7"> 
+    <rule id="100013" level="8"> 
         <decoded_as>syslog</decoded_as> 
         <field name="tag">info</field>
         <field name="MemFree">.*</field> 
@@ -27,7 +27,7 @@
     </rule>
 
     <!-- Rule for MemAvailable check -->
-    <rule id="100015" level="7">
+    <rule id="100015" level="8">
         <decoded_as>syslog</decoded_as>
         <field name="tag">info</field>
         <field name="MemAvailable">.*</field>
