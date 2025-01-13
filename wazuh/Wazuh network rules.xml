@@ -7,7 +7,7 @@
     <match>^.*(Port Opened|allowing|accept|opened).*(22|3389|3306|1433|21|23).*$</match>
     <alert_by_email>yes</alert_by_email>
     <active-response>
-      <command>/var/ossec/active-response/bin/block-port.sh</command>
+      <command>/var/ossec/active-response/bin/block_port.sh</command>
       <parameters>{port}</parameters>
     </active-response>
   </rule>
@@ -18,7 +18,7 @@
     <match>.*\b(?:\d{1,3}\.){3}\d{1,3}\b.*</match>
     <replace field="ip12">\1</replace>
     <active-response>
-      <command>/path/to/check_ip.sh {ip12}</command>
+      <command>/var/ossec/active-response/bin/check_ip.sh {ip12}</command>
     </active-response>
   </rule>
 
@@ -39,7 +39,7 @@
     <frequency>20</frequency>
     <timeframe>60</timeframe>
     <active-response>
-      <command>/path/to/block_ip.sh {SRC}</command>
+      <command>/var/ossec/active-response/bin/block_ip.sh {SRC}</command>
     </active-response>
   </rule>
 
@@ -63,7 +63,7 @@
     <match>.*(DNS|query).*"([^"]+)".*</match>
     <field name="domain">\1</field>
     <active-response>
-      <command>/path/to/domain_script.sh {domain}</command>
+      <command>/var/ossec/active-response/bin/domain_script.sh {domain}</command>
     </active-response>
   </rule>
 
@@ -74,7 +74,7 @@
     <frequency>50</frequency>
     <timeframe>360</timeframe>
     <active-response>
-      <command>/path/to/dns_script.sh "%{dns_queries}"</command>
+      <command>/var/ossec/active-response/bin/dns_script.sh "%{dns_queries}"</command>
     </active-response>
   </rule>
 
