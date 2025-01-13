@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script terminates processes using a specified port and then blocks the port using UFW
 PORT=$1
 PIDS=$(fuser $PORT/tcp 2>/dev/null)
 if [ ! -z "$PIDS" ]; then
