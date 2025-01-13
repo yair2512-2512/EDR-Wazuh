@@ -1,0 +1,81 @@
+<group name="network">
+
+  <!-- Rule for detecting port opening events (SSH, RDP, MySQL, etc.) -->
+  <rule id="10008" level="7">
+    <field name="tag">ufw</field>
+    <decoded_as>syslog</decoded_as>
+    <match>^.*(Port Opened|allowing|accept|opened).*(22|3389|3306|1433|21|23).*$</match>
+    <alert_by_email>yes</alert_by_email>
+    <active-response>
+      <command>/var/ossec/active-response/bin/block-port.sh</command>
+      <parameters>{port}</parameters>
+    </active-response>
+  </rule>
+
+  <!-- Rule for detecting and extracting IP address from syslog -->
+  <rule id="10009" level="6">
+    <decoded_as>syslog</decoded_as>
+    <match>.*\b(?:\d{1,3}\.){3}\d{1,3}\b.*</match>
+    <replace field="ip12">\1</replace>
+    <active-response>
+      <command>/path/to/check_ip.sh {ip12}</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for detecting changes in UFW (Firewall) configuration -->
+  <rule id="10010" level="5">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">ufw</field>
+    <regex>^(?!.*username=root).*Rule added|Rule deleted|Configuration change|ufw.*stopped</regex>
+    <alert_by_email>yes</alert_by_email>
+  </rule>
+
+  <!-- Rule for detecting denied connections (multiple attempts) -->
+  <rule id="10011" level="9">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">ufw</field>
+    <match>.*DENIED.*</match>
+    <field name="src_ip">.*</field>
+    <frequency>20</frequency>
+    <timeframe>60</timeframe>
+    <active-response>
+      <command>/path/to/block_ip.sh {SRC}</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for detecting network traffic being dropped or rejected -->
+  <rule id="100018" level="8">
+    <decoded_as>syslog</decoded_as>
+    <field name="tag">ufw</field>
+    <match>.*DROP.*</match>
+    <match>.*REJECT.*</match>
+    <match>.*BLOCK.*</match>
+    <frequency>20</frequency>
+    <timeframe>600</timeframe>
+    <active-response>
+      <command>/var/ossec/active-response/bin/block_ip.sh {SRC}</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for detecting suspicious DNS queries (e.g., domain requests) -->
+  <rule id="100023" level="7">
+    <decoded_as>syslog</decoded_as>
+    <match>.*(DNS|query).*"([^"]+)".*</match>
+    <field name="domain">\1</field>
+    <active-response>
+      <command>/path/to/domain_script.sh {domain}</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for detecting high-frequency DNS requests (possible DNS flood) -->
+  <rule id="100024" level="8">
+    <decoded_as>syslog</decoded_as>
+    <match>.*query|dns.*</match>
+    <frequency>50</frequency>
+    <timeframe>360</timeframe>
+    <active-response>
+      <command>/path/to/dns_script.sh "%{dns_queries}"</command>
+    </active-response>
+  </rule>
+
+</group>
