@@ -1,20 +1,23 @@
 <group name="authentication">
+  
+  <!-- Rule for blocking IP on failed login attempts -->
   <rule id="100001" level="10">
     <decoded_as>syslog</decoded_as>
-      <field name="tag">auth</field>
-      <field name="message">.*failed.*</field>
+    <field name="tag">auth</field>
+    <field name="message">.*failed.*</field>
     <frequency>10</frequency>
     <timeframe>600</timeframe>
     <active-response>
-      <command>/var/ossec/active-response/bin/block-ip.sh <command>
+      <command>/var/ossec/active-response/bin/block-ip.sh</command>
       <parameters>%{ip}</parameters>
     </active-response>
   </rule>
-
-    <rule id="100002" level="10">
+  
+  <!-- Rule for sudo attempts with incorrect password or disallowed command -->
+  <rule id="100002" level="8">
     <decoded_as>syslog</decoded_as>
     <field name="tag">sudo</field>
-    <match>(?:\S+\s+)?command not allowed | incorrect password attempts </match>
+    <match>(?:\S+\s+)?command not allowed|incorrect password attempts</match>
     <frequency>10</frequency>
     <timeframe>600</timeframe>
     <options>no_full_log</options>
@@ -25,18 +28,19 @@
     </active-response>
   </rule>
   
-  <rule id="100003" level="7">
+  <!-- Rule for reboot or passwd command attempts with sudo -->
+  <rule id="100003" level="6">
     <decoded_as>syslog</decoded_as>
     <field name="tag">sudo</field>
     <alert_by_email>yes</alert_by_email>
     <match>.*reboot|passwd.*</match>
   </rule>
-
-  <rule id="100022" level="10">
-     <decoded_as>syslog</decoded_as> 
-     <match>.*(SSLv2|SSLv3|TLSv1\.0|TLSv1\.1|RC4|DES|512|1024|Telnet ).*</match> 
-     <alert_by_email>yes</alert_by_email>
- </rule>
-
+  
+  <!-- Rule for detecting insecure SSL/TLS protocols -->
+  <rule id="100022" level="7">
+    <decoded_as>syslog</decoded_as>
+    <match>.*(SSLv2|SSLv3|TLSv1\.0|TLSv1\.1|RC4|DES|512|1024|Telnet ).*</match>
+    <alert_by_email>yes</alert_by_email>
+  </rule>
   
 </group>
