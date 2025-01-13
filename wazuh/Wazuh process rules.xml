@@ -2,7 +2,7 @@
 
   <!-- Rule for high CPU usage processes -->
   <rule id="100012" level="15">
-    <decoded_as>syslog</decoded_as>
+    <decoded_as>json</decoded_as>
     <field name="cpu">.*user=[8-9][0-9].*</field>
     <field name="pid">[0-9]+</field>
     <alert_by_email>yes</alert_by_email>
