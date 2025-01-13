@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script unmounts a specified USB device and blocks it permanently.
 device=$1
 if [ -b "/dev/$device" ]; then
     umount /dev/$device
