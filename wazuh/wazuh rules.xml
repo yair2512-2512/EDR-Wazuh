@@ -252,7 +252,7 @@
   </rule>
 
   <rule id="100026" level="15">
-  <description>New file creation detected in critical system path</description>
+  <decoded_as>json</decoded_as>
   <field name="data.action">created</field>
   <field name="data.file">/etc/*</field>
   alert_by_email>yes</alert_by_email>
@@ -260,7 +260,15 @@
       <command>/path/to/check_antivirus.sh {data.file}</command>
   </active-response>  
 
-
+  <rule id="100027" level="12">
+    <decoded_as>json</decoded_as>
+    <field name="data.status">deleted</field>
+    <field name="data.file">/etc/(passwd|shadow|sudoers)</field>
+    <alert_by_email>yes</alert_by_email>
+    <active-response>
+       <command>/path/to/backup.sh {data.file}</command>
+    </active-response>  
+  </rule>
 
     
 
