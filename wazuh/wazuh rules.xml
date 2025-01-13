@@ -241,17 +241,20 @@
 
 <group name="file monitoring">
   
- <rule id="100025" level="12">
-   <decoded_as>json</decoded_as>
-   <field name="data.status">modified</field>
-   <field name="data.file">/etc/(passwd|shadow|sudoers)</field>
-   <alert_by_email>yes</alert_by_email>
- </rule>
+  <rule id="100025" level="12">
+    <decoded_as>json</decoded_as>
+    <field name="data.status">modified</field>
+    <field name="data.file">/etc/(passwd|shadow|sudoers)</field>
+    <alert_by_email>yes</alert_by_email>
+    <active-response>
+       <command>/path/to/check_antivirus.sh {data.file}</command>
+    </active-response>  
+  </rule>
 
   <rule id="100026" level="15">
   <description>New file creation detected in critical system path</description>
   <field name="data.action">created</field>
-  <field name="data.file">/etc/(passwd|shadow|sudoers)</field>
+  <field name="data.file">/etc/*</field>
   alert_by_email>yes</alert_by_email>
   <active-response>
       <command>/path/to/check_antivirus.sh {data.file}</command>
