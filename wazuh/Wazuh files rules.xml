@@ -1,1 +1,52 @@
-s
+<group name="files">
+  
+  <!-- Rule for modified critical files in /etc -->
+  <rule id="100025" level="12">
+    <decoded_as>json</decoded_as>
+    <field name="data.status">modified</field>
+    <field name="data.file">/etc/(passwd|shadow|sudoers|ssh/sshd_config|crontab)</field>
+    <alert_by_email>yes</alert_by_email>
+  </rule>
+
+  <!-- Rule for created critical files in /etc -->
+  <rule id="100026" level="15">
+    <decoded_as>json</decoded_as>
+    <field name="data.action">created</field>
+    <field name="data.file">/etc/(passwd.*|shadow.*|sudoers.*|ssh/sshd_config.*|crontab.*)</field>
+    <alert_by_email>yes</alert_by_email>
+  </rule>
+
+  <!-- Rule for deleted critical files in /etc -->
+  <rule id="100027" level="12">
+    <decoded_as>json</decoded_as>
+    <field name="data.status">deleted</field>
+    <field name="data.file">/etc/(passwd|shadow|sudoers|ssh/sshd_config|crontab)</field>
+    <alert_by_email>yes</alert_by_email>
+    <active-response>
+      <command>/path/to/backup.sh {data.file}</command>
+    </active-response>
+  </rule>
+
+  <!-- Rule for modified files in system directories (usr, bin, lib, tmp, var) -->
+  <rule id="100028" level="6">
+    <decoded_as>json</decoded_as>
+    <field name="data.action">modified</field>
+    <field name="data.file">/(usr/bin|bin|lib|tmp|var)/.*</field>
+  </rule>
+
+  <!-- Rule for created files in system directories (usr, bin, lib, tmp, var) -->
+  <rule id="100029" level="6">
+    <decoded_as>json</decoded_as>
+    <field name="data.action">created</field>
+    <field name="data.file">/(usr/bin|bin|lib|tmp|var)/.*</field>
+  </rule>
+
+  <!-- Rule for deleted files in system directories (usr, bin, lib, tmp, var) -->
+  <rule id="100030" level="6">
+    <decoded_as>json</decoded_as>
+    <field name="data.action">deleted</field>
+    <field name="data.file">/(usr/bin|bin|lib|tmp|var)/.*</field>
+  </rule>
+
+</group>
+
