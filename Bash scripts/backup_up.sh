@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script restores a deleted file from the backup directory.
 BACKUP_DIR="/path/to/backup"
 if [ -z "$1" ]; then
   echo "You must specify the name of the deleted file."
@@ -18,3 +19,4 @@ else
   echo "Error restoring the file."
   exit 1
 fi
+
