@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script scans a file using the VirusTotal API, blocks it if malicious, and deletes it.
 API_KEY="your_virustotal_api_key"
 FILE_PATH="$1"  
 if [ ! -f "$FILE_PATH" ]; then
