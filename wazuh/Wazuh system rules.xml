@@ -1,1 +1,43 @@
-k
+<group name="system">
+  
+  <!-- Rule for blocking USB storage devices -->
+  <rule id="100004" level="10">
+    <decoded_as>syslog</decoded_as>
+    <alert_by_email>yes</alert_by_email>
+    <match>.*usb-storage|sd.*</match>
+    <active-response>
+      <command>/path/to/block_usb.sh</command>
+      <parameters>%{device_name}</parameters>
+    </active-response>
+  </rule>
+  
+  <!-- Rule for kernel panic or Oops events -->
+  <rule id="100005" level="17">
+    <decoded_as>syslog</decoded_as>
+    <alert_by_email>yes</alert_by_email>
+    <match>kernel.*(panic|Oops).*|(panic|Oops).*kernel</match>
+    <active-response>
+      <command>reboot</command>
+    </active-response>
+  </rule>
+  
+  <!-- Rule for memory or I/O errors, or segmentation faults -->
+  <rule id="100006" level="15">
+    <decoded_as>syslog</decoded_as>
+    <alert_by_email>yes</alert_by_email>
+    <match>.*(memory\s*failure.*|I/O\s*error.*|segmentation\s*fault.*|memory\s*access\s*violation.*).*</match>
+  </rule>
+  
+  <!-- Rule for module insertions or removals -->
+  <rule id="100007" level="12">
+    <decoded_as>syslog</decoded_as>
+    <match>module (inserted|removed)(?:\s*[:\s]*(\S+)?)?</match>
+    <options>no_full_log</options>
+    <active-response>
+      <command>/var/ossec/active-response/bin/check_module.sh</command>
+      <parameters>{2}</parameters>
+    </active-response>
+  </rule>
+
+</group>
+
