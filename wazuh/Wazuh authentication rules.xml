@@ -37,7 +37,7 @@
   </rule>
   
   <!-- Rule for detecting insecure SSL/TLS protocols -->
-  <rule id="100022" level="7">
+  <rule id="100032" level="7">
     <decoded_as>syslog</decoded_as>
     <match>.*(SSLv2|SSLv3|TLSv1\.0|TLSv1\.1|RC4|DES|512|1024|Telnet ).*</match>
     <alert_by_email>yes</alert_by_email>
