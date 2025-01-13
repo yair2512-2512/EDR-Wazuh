@@ -44,7 +44,7 @@
   </rule>
 
   <!-- Rule for detecting network traffic being dropped or rejected -->
-  <rule id="100018" level="8">
+  <rule id="100031" level="8">
     <decoded_as>syslog</decoded_as>
     <field name="tag">ufw</field>
     <match>.*DROP.*</match>
