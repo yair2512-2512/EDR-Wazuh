@@ -8,7 +8,7 @@
     <frequency>10</frequency>
     <timeframe>600</timeframe>
     <active-response>
-      <command>/var/ossec/active-response/bin/block-ip.sh</command>
+      <command>/var/ossec/active-response/bin/block_ip.sh</command>
       <parameters>%{ip}</parameters>
     </active-response>
   </rule>
