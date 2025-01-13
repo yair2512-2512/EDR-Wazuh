@@ -23,7 +23,7 @@
     <field name="data.file">/etc/(passwd|shadow|sudoers|ssh/sshd_config|crontab)</field>
     <alert_by_email>yes</alert_by_email>
     <active-response>
-      <command>/path/to/backup.sh {data.file}</command>
+      <command>/var/ossec/active-response/bin/backup_up.sh {data.file}</command>
     </active-response>
   </rule>
 
