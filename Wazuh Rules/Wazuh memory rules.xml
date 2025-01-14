@@ -2,7 +2,7 @@
     
     <!-- Rule for MemFree check -->
     <rule id="100013" level="8"> 
-        <decoded_as>syslog</decoded_as> 
+        <decoded_as>plain</decoded_as> 
         <field name="tag">info</field>
         <field name="MemFree">.*</field> 
         <regex>\bMemFree:\s+([0-9]+)\s+</regex> 
@@ -15,7 +15,7 @@
 
     <!-- Rule for SwapFree check -->
     <rule id="100014" level="7">
-        <decoded_as>syslog</decoded_as> 
+        <decoded_as>plain</decoded_as> 
         <field name="tag">info</field>
         <field name="SwapFree">.*</field>
         <regex>\bSwapFree:\s+([0-9]+)\s+</regex> 
@@ -28,7 +28,7 @@
 
     <!-- Rule for MemAvailable check -->
     <rule id="100015" level="8">
-        <decoded_as>syslog</decoded_as>
+        <decoded_as>plain</decoded_as>
         <field name="tag">info</field>
         <field name="MemAvailable">.*</field>
         <regex>\bMemAvailable:\s+([0-9]+)\s+</regex>
