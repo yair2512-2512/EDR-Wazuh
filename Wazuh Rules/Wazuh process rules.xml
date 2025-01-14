@@ -13,7 +13,7 @@
 
   <!-- Rule for suspicious executable paths in certain directories -->
   <rule id="1000016" level="15">
-    <decoded_as>syslog</decoded_as>
+    <decoded_as>audit</decoded_as>
     <field name="tag">audit</field>
     <field name="exe">^(/tmp/|/var/tmp/|/dev/shm/|/home/user/.hidden/).*</field>
     <active-response>
