@@ -16,7 +16,7 @@
   <!-- Rule for sudo attempts with incorrect password or disallowed command -->
   <rule id="100002" level="8">
     <decoded_as>syslog</decoded_as>
-    <field name="tag">sudo</field>
+    <field name="tag">auth</field>
     <match>(?:\S+\s+)?command not allowed|incorrect password attempts</match>
     <frequency>10</frequency>
     <timeframe>600</timeframe>
@@ -31,7 +31,7 @@
   <!-- Rule for reboot or passwd command attempts with sudo -->
   <rule id="100003" level="6">
     <decoded_as>syslog</decoded_as>
-    <field name="tag">sudo</field>
+    <field name="tag">auth</field>
     <alert_by_email>yes</alert_by_email>
     <match>.*reboot|passwd.*</match>
   </rule>
