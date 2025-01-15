@@ -1,0 +1,11 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/*.log                 # לוגים של מערכת
+      - /var/ossec/logs/ossec.log       # לוגים של Wazuh Manager
+      - /var/ossec/logs/alerts/alerts.json  # התראות של Wazuh
+
+output.elasticsearch:
+  hosts: ["http://<ELASTICSEARCH_IP>:9200"]  # כתובת של Elasticsearch שלך
+  index: "wazuh-agent-logs-%{+yyyy.MM.dd}"   # שם אינדקס לסוכן
