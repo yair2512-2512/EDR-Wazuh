@@ -2,9 +2,6 @@
 - Wazuh rules 
 - logs,process,file,network
 
-
-
-  
 - Agent ossec.conf 
 - logs,process,file,network
   
@@ -12,4 +9,3 @@
 - Bash scripts
 - filebeat.yml
 - Wazuh rules.xml
-to low pc end ponit banks ######
