@@ -1,5 +1,5 @@
  EDR wazuh system, kibana, elasticsearch, filebeat
-.  Wazuh rules 
+- Wazuh rules 
 - logs,process,file,network
   
 - Agent ossec.conf 
