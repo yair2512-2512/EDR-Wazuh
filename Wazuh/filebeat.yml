@@ -7,3 +7,23 @@ filebeat.inputs:
 output.elasticsearch:
   hosts: ["http://<ELASTICSEARCH_IP>:9200"]  
   index: "wazuh-alerts-%{+yyyy.MM.dd}"     
+
+setup.template.name: "wazuh"
+setup.template.pattern: "wazuh-alerts-*"
+setup.template.enabled: true
+setup.ilm.overwrite: true
+setup.ilm.enabled: false
+
+filebeat.modules:
+  - module: wazuh
+    alerts:
+      enabled: true
+    archives:
+      enabled: false
+
+logging.level: info
+logging.to_files: true
+logging.files:  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0644
