@@ -5,7 +5,7 @@
     
   - Filebeat configuration: Configuration for Filebeat agent to collect and forward logs to Elasticsearch.
     
-  - Bash Scripts: Custom scripts for system monitoring and automation.
+  - Bash Scripts: Custom scripts triggered by Wazuh rules for system monitoring and automation.
     
   - Wazuh Manager rules: Custom rules for file, process, memory, authentication, and system monitoring.
     
