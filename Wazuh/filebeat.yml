@@ -5,7 +5,7 @@ filebeat.inputs:
       - /var/ossec/logs/alerts/alerts.json  
 
   output.elasticsearch:
-    hosts: ["http://<ELASTICSEARCH_IP>:9200"]  
+    hosts: ["https://<ELASTICSEARCH_IP>:9200"]  
     index: "wazuh-alerts-%{+yyyy.MM.dd}"     
 
   setup.template.name: "wazuh"
