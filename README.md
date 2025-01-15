@@ -1,9 +1,7 @@
  EDR wazuh system
 - Wazuh rules 
 - logs,process,file,network
--
--
--
+
 
 
   
