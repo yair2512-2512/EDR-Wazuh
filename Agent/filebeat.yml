@@ -2,7 +2,10 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /var/log/*.log                
+      - /var/log/*.log 
+    codec: syslog  
+    fields:
+      log_type: "syslog" 
      
   output.elasticsearch:
     hosts: ["https://<ELASTICSEARCH_IP>:9200"]  
