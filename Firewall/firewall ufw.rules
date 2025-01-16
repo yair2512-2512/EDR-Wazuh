@@ -1,3 +1,8 @@
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 53/udp
+sudo ufw deny 23/tcp  
+sudo ufw deny 445/tcp
